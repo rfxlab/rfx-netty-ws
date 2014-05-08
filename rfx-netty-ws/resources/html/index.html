@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="dashboardApp">
+
+	<head>
+		<meta charset='UTF-8'>
+		<title>Rfx System Dashboard</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<link href="css/cluster-info.css" rel="stylesheet" >
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/dashboard.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body ng-controller="mainController">
+	
+		<div id="page-wrap">
+			<h1>Sample System Dashboard</h1>
+	
+			<!-- Nav tabs -->
+			<div ng-controller="initTabsController">
+			    <ul class="nav nav-tabs" id="tabs" >
+			        <li ng-repeat="section in sections" ng-class='{active:isSelected(section)}' >
+			            <a href="#{{section.key}}" ng-click="setMaster(section)" data-toggle="tab">{{section.name}}</a>
+			        </li>	        
+			    </ul>
+			</div>
+	
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<!-- this is where content will be injected -->
+				<div ng-view></div>			
+			</div>
+		</div>
+	
+		<!-- library scripts -->
+		<script src="js/jquery-2.1.0.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script src="js/angular-route.min.js"></script>
+		<script src="js/spark-md5.min.js"></script>
+				
+		<!-- application scripts -->
+		<script src="js/dashboard/app.js"></script>
+	</body>
+
+</html>
