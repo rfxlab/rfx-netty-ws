@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="http-netty-ws-server" name="rfx-netty-ws-server">
+
+	<!--ANT 1.7 is required -->
+	
+	<!--load common properties -->
+	<loadproperties srcFile="build.properties"/>
+
+	<!-- set global properties for this build -->
+	<tstamp><format property='build.time' pattern='yyyy-MM-dd HH:mm:ss'/></tstamp>	
+	<property name="src" location="src" />
+	<property name="build" location="build" />	
+	<property name="lib" location="libs" />	
+
+	<property name="common_class_path" value=" . ;
+		libs/gson.jar ; 
+		libs/jedis-2.4.2.jar ; 
+		libs/jersey-core-1.18.1.jar ; 
+		libs/jersey-json-1.18.1.jar ; 
+		libs/jersey-multipart-1.8.jar ; 
+		libs/jersey-server-1.18.1.jar ; 
+		libs/jersey-servlet-1.18.1.jar ; 
+		libs/netty-3.9.1.Final.jar ; 
+		libs/netty-servlet-bridge-1.0.0-SNAPSHOT.jar ; 
+		libs/servlet-api-2.5.jar ; 
+		libs/slf4j-api-1.6.4.jar ; 
+		libs/slf4j-simple-1.6.4.jar ; 
+		" />
+	
+	
+	<path id="main-classpathref">
+		<fileset dir="${lib}" includes="**/*.jar" excludes="**/.svn/*" />
+    </path>
+
+	<target name="init" >
+		<!-- Create the time stamp -->
+		<tstamp />
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${build}" />
+	</target>
+	
+	<target name="clean" description="clean up">
+		<!-- Delete the ${build} and ${dist} directory trees -->
+		<delete dir="${build}" />
+	</target>
+
+	
+	<target name="http-netty-ws-server" depends="init" description="compile the core-src and output the momo-backend-core.jar">
+		<!-- Compile the java code from ${src} into ${build} -->
+		<echo>Compiling code at src-core ...</echo>		
+		<javac srcdir="${src}" destdir="${build}" classpathref="main-classpathref" debug="on" encoding="utf-8" optimize="on" target="1.7"
+				fork="yes"	executable="${javac_path}" compiler="javac1.7" />
+		
+		<delete file="${dist}/${server_jar_name}" />
+		<jar destfile="${dist}/${server_jar_name}" filesetmanifest="mergewithoutmain">
+			<manifest>
+				<attribute name="Main-Class" value="${server_main_class}" />
+				<attribute name="Class-Path" value="${common_class_path}" />
+				<attribute name="Built-Date" value="${build.time}"/>
+			</manifest>
+			<fileset dir="${build}">
+				<exclude name="**/.svn/*" />
+				<exclude name="**/test/*" />
+			</fileset>
+		</jar>			
+		<delete dir="${build}" />		
+		<echo>Built OK ${server_jar_name} at ${build.time}</echo>
+	</target>	
+	
+	
+</project>

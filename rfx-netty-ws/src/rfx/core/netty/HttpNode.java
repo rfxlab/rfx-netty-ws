@@ -45,7 +45,7 @@ public class HttpNode {
 			System.out.println("started OK at host:" + masterHostname + " http-port:" + masterHttpPort);	
 		}
         long end = System.currentTimeMillis();
-        //LogUtil.i(">>> Server started in "+(end - start)+" ms .... <<< ");
+        System.out.println(">>> Server started in "+(end - start)+" ms .... <<< ");
     }   
     
     void loadServerBootstrap(ChannelPipelineFactory factory, int port){
@@ -75,7 +75,13 @@ public class HttpNode {
         bootstrap.setPipelineFactory(servletBridge);
 
         // Bind and start to accept incoming connections.
-        final Channel serverChannel = bootstrap.bind(new InetSocketAddress(this.masterHostname, port));
+        InetSocketAddress skAdd;
+        if(this.masterHostname.equals("*")){
+        	skAdd = new InetSocketAddress(masterHttpPort);
+        } else {
+        	skAdd = new InetSocketAddress(this.masterHostname, port);
+        }
+        final Channel serverChannel = bootstrap.bind(skAdd);
         
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override

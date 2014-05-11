@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Suggest Me</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.2/jquery.mobile.min.css" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.2/jquery.mobile.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+        
+        <style type="text/css">
+            img.item_img {
+                max-width: 90px;
+                max-height: 90px;
+            }
+        </style>
+    </head>
+    <body> 
+        <p id="demo">Suggest Me Something</p>
+        GPS:&nbsp;<span id="latlon"> </span> &nbsp; &nbsp; Address:&nbsp;<span id="address"></span>
+        <button onclick="getLocation()">Eat something with my friend </button>
+        <div id="suggested_items"></div>
+        <br>
+        <div style="text-align: center">
+            <div id="mapholder" style="width:80%; height:220px;" ></div>
+        </div>
+
+        <script>
+            //10.75350897 106.62901306
+            var x = $('#latlon');
+            function getLocation()
+            {
+                if (navigator.geolocation)
+                {
+                    navigator.geolocation.getCurrentPosition(showPosition, showError, {enableHighAccuracy: false, timeout: 10000});
+                }
+                else {
+                    x.innerHTML = "Geolocation is not supported by this browser.";
+                }
+            }
+
+            function showPosition(position)
+            {
+                var latlon = position.coords.latitude + "," + position.coords.longitude;
+                x.html(latlon);
+                var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                showMyLocation(latlng);
+            }
+
+            function showError(error)
+            {
+                switch (error.code)
+                {
+                    case error.PERMISSION_DENIED:
+                        x.html("User denied the request for Geolocation.");
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        x.html("Location information is unavailable.");
+                        break;
+                    case error.TIMEOUT:
+                        x.html("The request to get user location timed out.");
+                        break;
+                    case error.UNKNOWN_ERROR:
+                        x.html("An unknown error occurred.");
+                        break;
+                }
+            }
+
+            var theMap;
+            var theMarker;
+            var theGeocoder;
+            function initialize() {
+                var latlng = new google.maps.LatLng(10.7, 106.6);
+                var mapOptions = {
+                    zoom: 10,
+                    center: latlng
+                };
+                theMap = new google.maps.Map(document.getElementById('mapholder'), mapOptions);
+                theMarker = new google.maps.Marker({position: latlng, map: theMap});
+                theGeocoder = new google.maps.Geocoder();
+            }
+
+            function showMyLocation(latlong) {
+                theMap.setCenter(latlong);
+                theMarker.setPosition(latlong);
+                theMap.setZoom(16);
+                codeLatLng(latlong);
+            }
+
+            function codeLatLng(latlng) {
+                theGeocoder.geocode({'latLng': latlng}, function(results, status) {
+                    if (status === google.maps.GeocoderStatus.OK) {
+                        var location = results[2];
+                        if (location) {
+                            theMarker.setPosition(latlng);
+                            console.log(JSON.stringify(location));
+                            var address = location.formatted_address;
+                            $('#address').text(address);
+                            //return;
+                            $.ajax({
+                                url: "http://localhost:8080/suggest-me",
+                                // the name of the callback parameter, as specified by the YQL service
+                                jsonp: "callback",
+                                // tell jQuery we're expecting JSONP
+                                dataType: "jsonp",
+                                // tell YQL what we want and that we want JSON
+                                data: {},
+                                // work with the response
+                                success: function(response) {
+                                    $('#suggested_items').html(response.data);
+                                    console.log(response); // server response
+                                }
+                            });
+                        } else {
+                            alert('No results found');
+                        }
+                    } else {
+                        alert('Geocoder failed due to: ' + status);
+                    }
+                }
+                );
+            }
+            $(document).ready(initialize);
+        </script>
+    </body>
+</html>
