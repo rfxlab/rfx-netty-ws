@@ -6,8 +6,7 @@ import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-import rfx.core.netty.ws.HttpNodeResourceHandler;
-import rfx.core.netty.ws.HttpNodeRestHandler;
+import org.reflections.Reflections;
 
 @ApplicationPath("/")
 public class HttpNodeApp extends Application {
@@ -16,8 +15,13 @@ public class HttpNodeApp extends Application {
     public Set<Class<?>> getClasses() {
         final Set<Class<?>> classes = new HashSet<Class<?>>();
         // register root resource
-        classes.add(HttpNodeRestHandler.class);
-        classes.add(HttpNodeResourceHandler.class);
+        Reflections reflections = new Reflections("rfx.core.netty.ws");
+        Set<Class<?>> clazzes =  reflections.getTypesAnnotatedWith(javax.ws.rs.Path.class);
+        for (Class<?> clazz : clazzes) {
+        	classes.add(clazz);
+        	System.out.println("Register Rest Controller "+ clazz);
+		}
+        //classes.add(HttpNodeResourceHandler.class);
         return classes;
     }
 }
