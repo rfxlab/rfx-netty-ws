@@ -14,7 +14,6 @@
 	<classpathentry kind="lib" path="libs/gson.jar"/>
 	<classpathentry kind="lib" path="libs/slf4j-api-1.6.4.jar"/>
 	<classpathentry kind="lib" path="libs/slf4j-simple-1.6.4.jar"/>
-	<classpathentry kind="lib" path="libs/jedis-2.4.2.jar"/>
 	<classpathentry kind="lib" path="libs/jackson-annotations-2.4.0-rc3.jar"/>
 	<classpathentry kind="lib" path="libs/jackson-core-2.4.0-rc3.jar"/>
 	<classpathentry kind="lib" path="libs/jackson-databind-2.4.0-rc3.jar"/>
@@ -32,5 +31,7 @@
 	<classpathentry kind="lib" path="libs/reflections-0.9.9-RC1.jar"/>
 	<classpathentry kind="lib" path="libs/guava-17.0.jar"/>
 	<classpathentry kind="lib" path="libs/javassist-3.12.1.GA.jar"/>
+	<classpathentry kind="lib" path="libs/jedis-2.5.1.jar"/>
+	<classpathentry kind="lib" path="libs/rxjava-core-0.18.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
