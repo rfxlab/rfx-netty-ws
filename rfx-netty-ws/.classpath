@@ -33,5 +33,42 @@
 	<classpathentry kind="lib" path="libs/javassist-3.12.1.GA.jar"/>
 	<classpathentry kind="lib" path="libs/jedis-2.5.1.jar"/>
 	<classpathentry kind="lib" path="libs/rxjava-core-0.18.4.jar"/>
+	<classpathentry kind="lib" path="libs/scala-library-2.10.4.jar"/>
+	<classpathentry kind="lib" path="libs/akka/akka-actor_2.10-2.3.3.jar"/>
+	<classpathentry kind="lib" path="libs/akka/akka-agent_2.10-2.3.3.jar"/>
+	<classpathentry kind="lib" path="libs/akka/akka-camel_2.10-2.3.3.jar"/>
+	<classpathentry kind="lib" path="libs/akka/akka-cluster_2.10-2.3.3.jar"/>
+	<classpathentry kind="lib" path="libs/akka/akka-contrib_2.10-2.3.3.jar"/>
+	<classpathentry kind="lib" path="libs/akka/akka-dataflow_2.10-2.3.3.jar"/>
+	<classpathentry kind="lib" path="libs/akka/akka-durable-mailboxes-2.3.3.jar"/>
+	<classpathentry kind="lib" path="libs/akka/akka-file-mailbox_2.10-2.3.3.jar"/>
+	<classpathentry kind="lib" path="libs/akka/akka-kernel_2.10-2.3.3.jar"/>
+	<classpathentry kind="lib" path="libs/akka/akka-mailboxes-common_2.10-2.3.3.jar"/>
+	<classpathentry kind="lib" path="libs/akka/akka-multi-node-testkit_2.10-2.3.3.jar"/>
+	<classpathentry kind="lib" path="libs/akka/akka-persistence-experimental_2.10-2.3.3.jar"/>
+	<classpathentry kind="lib" path="libs/akka/akka-remote_2.10-2.3.3.jar"/>
+	<classpathentry kind="lib" path="libs/akka/akka-remote-tests_2.10-2.3.3.jar"/>
+	<classpathentry kind="lib" path="libs/akka/akka-slf4j_2.10-2.3.3.jar"/>
+	<classpathentry kind="lib" path="libs/akka/akka-testkit_2.10-2.3.3.jar"/>
+	<classpathentry kind="lib" path="libs/akka/akka-transactor_2.10-2.3.3.jar"/>
+	<classpathentry kind="lib" path="libs/akka/camel-core-2.10.3.jar"/>
+	<classpathentry kind="lib" path="libs/akka/config-1.2.1.jar"/>
+	<classpathentry kind="lib" path="libs/akka/hawtjni-runtime-1.8.jar"/>
+	<classpathentry kind="lib" path="libs/akka/jna-3.0.9.jar"/>
+	<classpathentry kind="lib" path="libs/akka/jnr-constants-0.8.2.jar"/>
+	<classpathentry kind="lib" path="libs/akka/jsr305-1.3.9.jar"/>
+	<classpathentry kind="lib" path="libs/akka/leveldb-0.5.jar"/>
+	<classpathentry kind="lib" path="libs/akka/leveldb-api-0.5.jar"/>
+	<classpathentry kind="lib" path="libs/akka/leveldbjni-1.7.jar"/>
+	<classpathentry kind="lib" path="libs/akka/leveldbjni-all-1.7.jar"/>
+	<classpathentry kind="lib" path="libs/akka/leveldbjni-linux32-1.5.jar"/>
+	<classpathentry kind="lib" path="libs/akka/leveldbjni-linux64-1.5.jar"/>
+	<classpathentry kind="lib" path="libs/akka/leveldbjni-osx-1.5.jar"/>
+	<classpathentry kind="lib" path="libs/akka/leveldbjni-win32-1.5.jar"/>
+	<classpathentry kind="lib" path="libs/akka/leveldbjni-win64-1.5.jar"/>
+	<classpathentry kind="lib" path="libs/akka/protobuf-java-2.5.0.jar"/>
+	<classpathentry kind="lib" path="libs/akka/scala-stm_2.10-0.7.jar"/>
+	<classpathentry kind="lib" path="libs/akka/slf4j-api-1.7.5.jar"/>
+	<classpathentry kind="lib" path="libs/akka/uncommons-maths-1.2.2a.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
