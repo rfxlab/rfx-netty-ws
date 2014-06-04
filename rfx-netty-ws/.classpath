@@ -70,5 +70,7 @@
 	<classpathentry kind="lib" path="libs/akka/scala-stm_2.10-0.7.jar"/>
 	<classpathentry kind="lib" path="libs/akka/slf4j-api-1.7.5.jar"/>
 	<classpathentry kind="lib" path="libs/akka/uncommons-maths-1.2.2a.jar"/>
+	<classpathentry kind="lib" path="libs/mustache-0.8.15.jar"/>
+	<classpathentry kind="lib" path="libs/xmemcached-2.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
